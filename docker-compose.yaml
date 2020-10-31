@@ -1,0 +1,18 @@
+version: "3.7"
+services:
+  backend:
+    build: backend
+    ports: 
+      - '80:80'
+    volumes:
+      - type: volume
+        source: www
+        target: /var/www/html/
+    volumes:
+      - type: volume
+        source: apache2
+        target: /etc/apache2
+
+volumes:
+  www:
+  apache2:
