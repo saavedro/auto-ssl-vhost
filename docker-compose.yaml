@@ -8,7 +8,6 @@ services:
       - type: volume
         source: www
         target: /var/www/html/
-    volumes:
       - type: volume
         source: apache2
         target: /etc/apache2
@@ -20,7 +19,24 @@ services:
       - backend
     ports:
       - "80:80"
+  daemon:
+    build: daemon
+    volumes:
+      - type: volume
+        source: www
+        target: /var/www/html/
+      - type: volume
+        source: apache2
+        target: /etc/apache2
+      - type: volume
+        source: etc_letsencrypt
+        target: /etc/letsencrypt
+      - type: volume
+        source: varlib_letsencrypt
+        target: /var/lib/letsencrypt
 
 volumes:
   www:
   apache2:
+  etc_letsencrypt:
+  varlib_letsencrypt:
